@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\view;
 use App\Tool\Validate\ValidateCode;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function toLogin($value=''){
-      return view('login');
+    public function toLogin(Request $request){
+      $return_url = $request->input('return_url', '');
+
+      return view('login')->with('return_url', urldecode($return_url));
     }
     public function toRegister($value=''){
       return view('register');

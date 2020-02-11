@@ -142,12 +142,12 @@ class MemberController extends Controller
 
 
     //判断
-    $validate_code_session = $request->session()->get('validate_code');
-    if($validate_code != $validate_code_session){
-      $m3_result->status = 1;
-      $m3_result->message = '验证码不正确';
-      return $m3_result->toJson();
-    }
+    // $validate_code_session = $request->session()->get('validate_code');
+    // if($validate_code != $validate_code_session){
+    //   $m3_result->status = 1;
+    //   $m3_result->message = '验证码不正确';
+    //   return $m3_result->toJson();
+    // }
 
     $member = null;
     if(strpos($username, '@') == true){
@@ -169,10 +169,13 @@ class MemberController extends Controller
         return $m3_result->toJson();
       }
 
-      $request->session()->put('memeber', $member);//登录成功后将用户信息放入session
-
+      // $request->session()->pull('memeber', '');
+      session(['member' => $member]);
+      // $request->session()->put('memeber', $member);//登录成功后将用户信息放入session
+      // $member = $request->session()->get('memeber', '');
+      // return $member->toJson();
       $m3_result->status = 0;
-      $m3_result->message = '登录成功';
+      $m3_result->message = '登录成功1';
       return $m3_result->toJson();
 
     }

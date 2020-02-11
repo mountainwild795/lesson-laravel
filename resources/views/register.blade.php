@@ -160,7 +160,7 @@
     }, 1000);
 
     $.ajax({
-      type: 'POST';
+      type: 'POST',
       url: 'http://localhost/book/public/service/validate_phone/send',
       // url: '/service/validate_phone/send',
       dataType: 'json',

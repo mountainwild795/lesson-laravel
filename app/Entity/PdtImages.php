@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
-class member extends Model
+class PdtImages extends Model
 {
-    protected $table = 'member';
+    protected $table = 'pdt_images';
     // protected $primaryKey = 'id';
     // public $timestamp = false;
 }

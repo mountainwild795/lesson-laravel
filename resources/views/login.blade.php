@@ -94,28 +94,29 @@
         }
 
         //验证码
-        var validate_code = $('input[name=validate_code]').val();
-        if(validate_code.length == 0){
-          $('.bk_toptips').show();
-          $('.bk_toptips span').html('验证码不能为空');
-          setTimeout(function(){
-            $('.bk_toptips').hide();}, 2000);
-            return;
-        }
-        if(validate_code.length < 4){
-          $('.bk_toptips').show();
-          $('.bk_toptips span').html('验证码不能少于6位');
-          setTimeout(function(){
-            $('.bk_toptips').hide();}, 2000);
-            return;
-        }
+        // var validate_code = $('input[name=validate_code]').val();
+        // if(validate_code.length == 0){
+        //   $('.bk_toptips').show();
+        //   $('.bk_toptips span').html('验证码不能为空');
+        //   setTimeout(function(){
+        //     $('.bk_toptips').hide();}, 2000);
+        //     return;
+        // }
+        // if(validate_code.length < 4){
+        //   $('.bk_toptips').show();
+        //   $('.bk_toptips span').html('验证码不能少于6位');
+        //   setTimeout(function(){
+        //     $('.bk_toptips').hide();}, 2000);
+        //     return;
+        // }
 
         $.ajax({
           type: "POST",
-          url: 'http://localhost/book1/public/service/login',
+          url: 'http://localhost/book/public/service/login',
           dataType: 'json',
           cache: false,
-          data: {username:username, password: password, validate_code: validate_code, _token: "{{csrf_token()}}"},
+          data: {username:username, password: password, _token: "{{csrf_token()}}"},
+          // data: {username:username, password: password, validate_code: validate_code, _token: "{{csrf_token()}}"},
           success: function(data) {
             if(data == null) {
               $('.bk_toptips').show();
@@ -123,18 +124,19 @@
               setTimeout(function() {$('.bk_toptips').hide();}, 2000);
               return;
             }
-            if(data.status != 0) {
-              $('.bk_toptips').show();
-              $('.bk_toptips span').html(data.message);
-              setTimeout(function() {$('.bk_toptips').hide();}, 2000);
-              return;
-            }
-
+            // if(data.status != 0) {
+            //   $('.bk_toptips').show();
+            //   $('.bk_toptips span').html(data.message);
+            //   setTimeout(function() {$('.bk_toptips').hide();}, 2000);
+            //   return;
+            // }
+            // console.log(data);
             $('.bk_toptips').show();
-            $('.bk_toptips span').html('登录成功');
+            $('.bk_toptips span').html('登录成功2');
             setTimeout(function() {$('.bk_toptips').hide();}, 2000);
-
-            location.href = 'http://localhost/book1/public/category';
+            
+            location.href = '{{$return_url}}';
+            // location.href = 'http://localhost/book/public/category';
           },
           error: function(xhr, status, error) {
             console.log(xhr);
